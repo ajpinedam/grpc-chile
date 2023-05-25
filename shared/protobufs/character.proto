@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+enum Allegiance {
+    STARK = 0;
+    ARRYN = 1;
+    BARATHEON = 2;
+    TULLY = 3;
+    GREYJOY = 4;
+    LANNISTER = 5;
+    TYREL = 6;
+    MARTELL = 7;
+    TARGARYEN = 8;
+}
+
+message CharacterRequest {
+    int32 user_id = 1;
+    Allegiance house = 2;
+    int32 max_results = 3;
+}
+
+message Character {
+    int32 id = 1;
+    string title = 2;
+    string name = 3;
+    Allegiance house = 4;
+    int32 age = 5;
+    string religion = 6;
+    string email = 7;
+    string phone = 8;
+}
+
+message CharacterResponse {
+    repeated Character characters = 1;
+}
+
+service GOTCharacter {
+    rpc GetCharacter (CharacterRequest) returns (CharacterResponse);
+}
